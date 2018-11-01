@@ -1,0 +1,11 @@
+.reg_form > input, .reg_form > select {
+	display: block;
+	margin: 5px;
+}
+.form {
+	position: relative;
+	left: 10%;
+	width: 80%;
+	border: 1px solid green;
+	padding: 5px 3px 5px 5px;
+}

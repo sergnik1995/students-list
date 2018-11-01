@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<div class="form">
+		<?php if($error != 1 && $error != NULL): ?>
+		<p>Ошибка!</p>
+		<?php foreach($error as $number => $err): ?>
+		<p><?=htmlspecialchars($err,ENT_QUOTES)?></p>
+		<?php endforeach; endif; ?>
+		<form class="reg_form" name="registration" method="post" action="registration.php">
+			<input type="hidden" name="token" value="<?=htmlspecialchars($token, ENT_QUOTES)?>">
+			Имя: <input type="text" name="name" value="<?=$defaultValues != NULL ? htmlspecialchars($defaultValues['name'],ENT_QUOTES) : ''?>">
+			<p>Имя должно содержать только буквы и быть длинной до 40 символов.</p>
+			Фамилия: <input type="text" name="surname" value="<?=$defaultValues != NULL ? htmlspecialchars($defaultValues['surname'],ENT_QUOTES) : ''?>">
+			<p>Фамилия должна содержать только буквы и быть длинной до 40 символов.</p>
+			Пол: 
+			<select name="sex" value="<?=$defaultValues != NULL ? htmlspecialchars($defaultValues['sex'], ENT_QUOTES) : ''?>">
+                <option>Мужской</option>
+ 			    <option>Женский</option>
+			</select>
+			Группа: <input type="text" name="gro" value="<?=$defaultValues != NULL ? htmlspecialchars($defaultValues['gro'], ENT_QUOTES) : ''?>">
+			<p>Группа должна содержать только буквы и цифры и быть длинной до 5 символов.</p>
+			<?php if(!array_key_exists('email', $_COOKIE)): ?>
+			Эмейл: <input type="text" name="email">
+			<p>Эмейл должен быть записан в формате name@email.com.</p>
+			<?php endif;?>
+			Сумма баллов: <input type="text" name="exams" value="<?=$defaultValues != NULL ? htmlspecialchars($defaultValues['exams'], ENT_QUOTES) : ''?>">
+			<p>Сумма баллов должна быть от 0 до 300.</p>
+			Год рождения: <input type="text" name="y" value="<?=$defaultValues != NULL ? htmlspecialchars($defaultValues['y'], ENT_QUOTES) : ''?>">
+			<p>Год рождения должен быть от 1900 до 2000</p>
+			Проживаете по месту обучения:
+			<select name="locate" value="<?=$defaultValues != NULL ? htmlspecialchars($defaultValues['locate'], ENT_QUOTES) : ''?>">
+                <option>Да</option>
+ 			    <option>Нет</option>
+			</select>
+			<input type="submit" value="<?=array_key_exists('email', $_COOKIE) ? 'Редактировать' : 'Зарегистрироваться' ?>">
+		</form>
+	</div>
+</body>
+</html>

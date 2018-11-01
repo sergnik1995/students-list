@@ -1,0 +1,23 @@
+.search_students {
+	display: inline;
+}
+.search_form, .table, .pages, .error {
+	position: relative;
+	width: 80%;
+	left: 10%;
+	border-top: 1px solid green;
+	padding: 8px 5px 5px 5px;
+}
+.search_form {
+	background-color: #4b4b4b;
+	color: white;
+}
+.table {
+	border-left: 1px solid green;
+	border-right: 1px solid green;
+	padding: 5px 3px 5px 5px;
+}
+.error {
+	border: 1px solid green;
+	padding: 5px 3px 5px 5px;
+}

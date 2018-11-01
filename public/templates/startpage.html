@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+	<div class="search_form">
+		Список студентов 
+		<form name="test" method="get" action="index.php" class="search_students">
+		<input type="search" name="q" placeholder="Поиск"> <input type="submit" value="Найти">
+	    </form>
+	</div>
+	<?php if($error == ''): ?>
+	<div class="table">
+	<table>
+		<tr>
+			<?php foreach($columns as $name => $url): ?>
+			<th>
+			<a href="?<?=$url?>">
+				<?php
+				if($name == 'name') echo 'Имя ';
+				else if($name == 'surname') echo 'Фамилия ';
+				else if($name == 'gro') echo 'Группа ';
+				else if($name == 'exams') echo 'Баллы ';
+				if($order['name'] == $name) {
+				    echo $order['order'] == 'asc' ? '[▲]' : '[▼]';
+			    }
+			    else if($name == 'exams' && $order['name'] == '') {
+			        echo '[▼]';
+				}
+				?>				
+			</a></th>
+			<?php endforeach; ?>
+		</tr>
+		<?php while($row = $query->fetch_assoc()): ?>
+		<tr>
+			<?php foreach($row as $name => $value): ?>
+			<td><?=htmlspecialchars($value,ENT_QUOTES)?></td>
+			<?php endforeach; ?>
+		</tr>
+		<?php endwhile; ?>
+	</table>
+	</div>
+	<div class="pages">
+		<?php foreach($pagesArr as $page => $url): ?>
+		<a href="?<?=$url?>"><?php echo $currentPage == $page ? "[".$page."]" : $page ?></a>
+		<?php endforeach; ?>
+	</div>
+	<?php else :?>
+	<div class="error">
+		<?=htmlspecialchars($error,ENT_QUOTES)?>
+	</div>
+	<?php endif; ?>
+</body>
+</html>
